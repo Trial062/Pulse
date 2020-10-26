@@ -16,6 +16,16 @@
         }
     }
 }
+@media (max-width: 991px){
+    .carousel{
+        .prev, .next {
+            display: none;
+        }
+        img{
+            width:90%;
+        }
+    }
+}
 @media (max-width: 767px){
     .container{
         max-width: 540px;
@@ -130,5 +140,12 @@
             text-align: center;
         }
     
+    }
+    .carousel{
+        &__inner{
+            img{
+                width:80%;
+            }
+        }
     }
 }
