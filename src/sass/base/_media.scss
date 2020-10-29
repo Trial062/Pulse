@@ -31,6 +31,9 @@
         img{
             width:90%;
         }
+        .tns-nav{
+            display:flex;
+        }
     }
 }
 @media (max-width: 767px){
@@ -72,6 +75,7 @@
         }
     }
     .catalog{
+        padding-bottom: 50px;
         &__content{
             width:95%;
         }
@@ -103,6 +107,21 @@
             }
         }
 
+    }
+    .comment{
+        &-block{
+            margin-top: 50px;
+            &__avatar{
+                width:130px;
+                height:130px;
+            }
+            &__item{
+                margin-left: 30px;
+            }
+            &__text{
+                font-size: 14px;
+            }
+        }
     }
 }
 @media(max-width:575px){
@@ -214,5 +233,22 @@
             }
         }
 
+    }
+    .comment{
+        &-block{
+            flex-direction: column;
+            align-items: center;
+            &__item{
+                width:90%;
+                margin-left:0;
+            }
+            &__name{
+                text-align: center;
+                margin-top: 10px;
+            }
+            &__status{
+                text-align: center;
+            }
+        }
     }
 }
