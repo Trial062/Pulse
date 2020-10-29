@@ -35,6 +35,20 @@
             display:flex;
         }
     }
+    .footer{
+        &__info{
+            width:300px;
+            height:200px;
+            padding:20px;
+        }
+        &__adress{
+            font-size: 15px;
+        }
+        &__phone{
+            font-size: 15px;
+            margin-top: 20px;
+        }
+    }
 }
 @media (max-width: 767px){
     .container{
@@ -121,6 +135,19 @@
             &__text{
                 font-size: 14px;
             }
+        }
+    }
+    .footer{
+        &__info{
+            position: static;
+            width:100%;
+            left:auto;
+            transform: translateX(0);
+            margin-top:0;
+        }
+        &__adress{
+            display: block;
+            margin: 0 auto;
         }
     }
 }
