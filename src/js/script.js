@@ -66,37 +66,23 @@ document.addEventListener('DOMContentLoaded', () => {
   toggleDescription(backLink);
 
   //Modal
-  const consultationBtns = document.querySelectorAll('[data-modal="consultation"]'),
-    closeBtns = document.querySelectorAll('.modal__close'),
-    buyBtns = document.querySelectorAll('.button_buy'),
-    overlay = document.querySelector('.overlay');
-  consultationBtns.forEach(item => {
-    item.addEventListener('click', () => {
-      const consultation = document.querySelector('#consultation');
-      consultation.classList.remove('modal_disable');
-      overlay.classList.add('modal_active');
-    });
-  });
-  closeBtns.forEach(item => {
-    item.addEventListener('click', () => {
-      overlay.classList.remove('modal_active');
-      item.parentElement.classList.add('modal_disable');
-    });
-  });
-  buyBtns.forEach((item, i) => {
-    item.addEventListener('click', () => {
-      const prodTitle = document.querySelectorAll('.catalog-item__subtitle'),
-        order = document.querySelector('#order'),
-        modalDescr = order.querySelector('.modal__descr');
-      modalDescr.innerHTML = prodTitle[i].innerHTML;
-      order.classList.remove('modal_disable');
-      overlay.classList.add('modal_active');
-    });
-  });
 });
-
 $(document).ready(function () {
+  $('[data-modal=consultation]').on('click', function () {
+    $('.overlay, #consultation').fadeIn('slow');
+  });
+  $('.modal__close').on('click', function () {
+    $('.overlay, #consultation, #end, #order').fadeOut('slow');
+  });
 
+  $('.button_buy').each(function (i) {
+    $(this).on('click', function () {
+      $('#order .modal__descr').text($('.catalog-item__subtitle').eq(i).text());
+      $('.overlay, #order').fadeIn('slow');
+    });
+  });
+
+//validate forms
   function validateForm(form) {
     $(form).validate({
       rules: {
@@ -117,11 +103,43 @@ $(document).ready(function () {
       }
     });
   }
-  validateForm('#consultation-form');
+  validateForm('#consultation__form');
   validateForm('#consultation form');
   validateForm('#order form');
   $('input[name=phone]').mask("+7(999) 999-9999");
 
+  $('form').submit(function (e) {
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: "mailer/smart.php",
+      data: $(this).serialize()
+    }).done(function () {
+      $(this).find("input").val("");
+      $('#consultation, #order').fadeOut();
+      $('.overlay, #end').fadeIn('slow');
+
+      $('form').trigger('reset');
+    });
+    return false;
+  });
+
+  //pageUp
+  $(window).scroll(function(){
+    if($(this).scrollTop() > 1600) {
+      $('.pageUp').fadeIn();
+    } else{
+      $('.pageUp').fadeOut();
+    }
+
+
+    
+  });
+  $("a[href^='#']").click(function(){
+    var _href = $(this).attr("href");
+    $("html, body").animate({scrollTop: $(_href).offset().top +"px"});
+    return false;
+  });
 
 
 });

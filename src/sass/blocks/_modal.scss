@@ -20,8 +20,6 @@
     }
     .error{
         border:1px solid red;
-        
-
     }
     label.error{
         border:none;
@@ -50,11 +48,8 @@
         text-align: center;
         margin-top: 11px;
     }
-    &_disable{
-        display: none;
-    }
-    &_active{
-        display:block;
-    }
+    
 }
-
+#end, #consultation, #order{
+    display: none;
+}
