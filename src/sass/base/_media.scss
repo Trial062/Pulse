@@ -278,4 +278,24 @@
             }
         }
     }
+    .modal{
+        width:250px;
+        padding:20px;
+        &__close{
+            right:-30px;
+        }
+        .feed-form{
+            input{
+                width:70%;
+                height:40px;
+                font-size: 12px;
+            }
+            button{
+                width:70%;
+                height:40px;
+                font-size: 13px;
+            }
+
+        }
+    }
 }
