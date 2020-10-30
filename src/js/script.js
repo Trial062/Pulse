@@ -94,3 +94,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+$(document).ready(function () {
+
+  function validateForm(form) {
+    $(form).validate({
+      rules: {
+        name: "required",
+        phone: "required",
+        email: {
+          required: true,
+          email: true
+        }
+      },
+      messages: {
+        name: "Пожалуйста, введите свое имя",
+        phone: "Пожалуйста, введите свой номер телефона",
+        email: {
+          required: "Пожалуйста, введите ваш email",
+          email: "Введен некорректный email"
+        }
+      }
+    });
+  }
+  validateForm('#consultation-form');
+  validateForm('#consultation form');
+  validateForm('#order form');
+  $('input[name=phone]').mask("+7(999) 999-9999");
+
+
+
+});
